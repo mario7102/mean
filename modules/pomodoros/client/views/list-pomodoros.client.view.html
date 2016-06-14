@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Pomodoros</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="pomodoro in vm.pomodoros"
+       data-ui-sref="pomodoros.view({ pomodoroId: pomodoro._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="pomodoro.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="pomodoro.user" data-ng-bind="pomodoro.user.displayName"></span>
+        <span data-ng-if="!pomodoro.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="pomodoro.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.pomodoros.$resolved && !vm.pomodoros.length">
+    No Pomodoros yet, why don't you <a data-ui-sref="pomodoros.create">create one</a>?
+  </div>
+</section>
